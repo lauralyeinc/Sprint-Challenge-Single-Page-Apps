@@ -2,15 +2,17 @@ import React from "react";
 
 export default function WelcomePage() {
   return (
-    <section className="welcome-page">
-      <header>
+    
         <h1>Welcome to the ultimate fan site!</h1>
         <img
           className="main-img"
           src="https://rickandmortyapi.com/api/character/avatar/1.jpeg"
           alt="rick"
         />
-      </header>
-    </section>
+        <Div>
+          <Link to='/characters'><Button> Check out the full list of Characters! 
+          </Button> 
+          </Link> 
+        </Div>
   );
 }
