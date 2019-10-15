@@ -1,20 +1,13 @@
 import React from "react";
 
-const handleSubmit = (event) => {
-  event.preventDefault(); 
-}
+import './searchform.css'; 
 
-export default function SearchForm() {
+export default function SearchForm(props) {
   return (
     <section className="search-form">
-    <form onSubmit={() => handleSubmit()}>
+    <form>
       <label>
-      <input name="searchform" type="text" placeholder="Search for a Character" />
-      </label>
-      <label>
-        <button>
-          Find my Character!
-        </button >
+      <input onChange={props.handleChange} name="searchform" type="text" placeholder="Search for a Character" />
       </label>
     </form>
     </section>
