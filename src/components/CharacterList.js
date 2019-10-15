@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import axios from 'axios';
 import SearchForm from './SearchForm.js';
 import CharacterCard from './CharacterCard.js'; 
-import { Link } from 'react-router-dom';
+
 
 
 export default function CharacterList(props) {
@@ -22,6 +22,33 @@ export default function CharacterList(props) {
         });
       
     }, []);
+
+    const handleChange = (event) => {
+      //console.log(event); 
+      event.preventDefault(); 
+      let searchCharacter= event.target.value.toLowerCase();
+      //console.log(searchCharacter);
+      setSearchCharacter(searchCharacter);
+    } 
+
+    if(searchCharacter) {
+      console.log(" I ran "); 
+        let charactersFiltered = characters.filter(character => {
+          if(character.name.toLowerCase().includes(searchCharacter)){
+            return character;
+        } 
+        }) 
+        console.log(charactersFiltered); 
+    
+        return (
+          <div className='characters-page'>
+            <SearchForm handleChange={handleChange} /> 
+            {charactersFiltered.map(character => (
+            <CharacterCard key={character.id} character={character}/>
+            ))}
+          </div>
+        );
+    }
     
 
     if (!characters) {
@@ -40,30 +67,8 @@ export default function CharacterList(props) {
     }
 
 
-if(searchCharacter) {
-    let charactersFiltered = characters.filter(character => {
-      if(character.name.toLowerCase().includes(searchCharacter)){
-        return character;
-    }
-    })
-}
 
 
-  const handleChange = (event) => {
-    event.preventDefault(); 
-    let searchCharacter= event.target.value.toLowerCase();
-    setSearchCharacter(searchCharacter);
-    
-    return (
-      <div className='characters-page'>
-        <SearchForm handleChange={handleChange} /> 
-        {characters.map(character => (
-        <CharacterCard key={character.id} character={character}/>
-        
-        ))}
-      </div>
-    );
-  } 
 }
 
 
