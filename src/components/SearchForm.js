@@ -1,5 +1,6 @@
 import React from "react";
 
+import './searchform.css'; 
 
 export default function SearchForm(props) {
   return (
